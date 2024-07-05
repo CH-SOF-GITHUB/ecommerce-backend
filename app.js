@@ -66,4 +66,5 @@ app.get('/contact', (req, res) => {
   res.send('page contact')
 })
 
+// Il faut ajouter dans le serveur app.js à la fin du code. 
 module.exports = app

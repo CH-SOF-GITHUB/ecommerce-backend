@@ -17,7 +17,9 @@ app.use(express.json())
 dotenv.config()
 
 // Les cors
-app.use(cors())
+app.use(cors({
+  origin:"*"
+}))
 
 // BodyParser Middleware
 app.use(express.json())

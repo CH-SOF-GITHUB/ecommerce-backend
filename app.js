@@ -18,9 +18,13 @@ dotenv.config()
 
 // Les cors
 app.use(cors({
-  origin:"*"
+  origin: "*"
 }))
-
+/*
+app.use(cors({
+  origin:"http://localhost/3000"
+}))
+*/
 // BodyParser Middleware
 app.use(express.json())
 

@@ -8,6 +8,12 @@ const categorieRouter = require('./routes/categorie.route');
 const scategorieRouter = require('./routes/scategorie.route');
 const articleRouter = require('./routes/article.route');
 
+// Authentification Token
+const userRouter = require('./routes/user.route.js');
+
+// stripe
+const paymentRouter =require("./routes/payment.route.js"); 
+
 const app = express()
 
 // c'est un middleaware
@@ -58,6 +64,12 @@ mongoose
 app.use("/api/categories", categorieRouter);
 app.use("/api/scategories", scategorieRouter);
 app.use("/api/articles", articleRouter);
+
+// authentification
+app.use("/api/users", userRouter);
+
+//stripe
+app.use('/api/payment', paymentRouter); 
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is listening on port ${process.env.PORT}`)

@@ -4,10 +4,15 @@ const Categorie = require('../models/categorie')
 
 const router = express.Router()
 
+//
+const verifyToken = require('../routes/middleware/verify-token');
+const authorizeRoles = require('../routes/middleware/authorizeRoles');
+
+
 // méthode POST
 // async pourquoi: pour envoyer les données à la base de données, 
 // il termine et enregistre par suite passe au 2 éme requete
-router.post('/', async (req, res) => {
+router.post('/', verifyToken, authorizeRoles("admin", "visiteur") , async (req, res) => {
   const { nomcategorie, imagecategorie } = req.body
   const newCategorie = new Categorie({
     nomcategorie: nomcategorie,

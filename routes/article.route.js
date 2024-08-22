@@ -4,6 +4,9 @@ const Article = require('../models/article')
 
 const router = express.Router()
 
+// verify token for login
+const verifyToken = require('../routes/middleware/verify-token');
+
 // méthode POST
 router.post('/', async (req, res) =>  {  
     const nouvarticle = new Article(req.body) 
@@ -16,8 +19,8 @@ router.post('/', async (req, res) =>  {
     } 
 });
 
-// méthode GET
-router.get('/', async (req, res) => {
+// méthode GET: afficher la liste des articles
+router.get('/', verifyToken ,async (req, res) => {
   // retour tableau
   try {
     const articles = await Article.find({}, null, { sort: { '_id': -1 } }).populate("scategorieID");
